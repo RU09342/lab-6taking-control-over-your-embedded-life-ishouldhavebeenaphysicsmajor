@@ -19,7 +19,7 @@ The schematic for a simple mosfet switch can be seen in the following diagram. I
 # Relay Switching 
 The schematic for the relay switch circuit can be seen in this next figure. In this the MOSFET is not acting as a switch, but it is instead used as a buffer to isolate the microcontroller from the relay. The MOSFET protects the G2553's pin from the relay as it may draw too much current and burn out the pin. The diode in the schematic is there to protect the MOSFET from reverse voltage caused by the emf produced by inductor in the relay. 
 
-![RelaySwitchSchematic](RelaySwitchSchematic.png) 
+![RelaySwitchSchematic](RelaySwitchSchematic.PNG) 
 
 *Insert Screenshot when available*
 
