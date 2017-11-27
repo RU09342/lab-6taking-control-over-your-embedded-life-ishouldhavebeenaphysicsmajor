@@ -12,14 +12,21 @@ This process is essentially the same as debouncing the switch. In the switches' 
 # MOSFET Switching
 The schematic for a simple mosfet switch can be seen in the following diagram. In this a load resistor is connected to the 12 volt source and the gate of the MOSFET is connected to the square wave output of the microcontroller. 
 ![MosfetSwitchingSchematic](MosfetSwitchingSchematic.png) 
-
-*Insert Screenshot when available* *Remember to bring a flashdrive*
+The switch flipping at 0.5 Hz can be seen next, the switch behaves as expected and continues to do so at 300 Hz and likely 
+![05hzfet10](05hzfet10.png) 
+The MOSFET can be seen still flipping relatively accurately with minor weird spikes on the edges of the signal. 
+![300hzfet13](300hzfet13.png) 
 
 # Relay Switching 
-The schematic for the relay switch circuit can be seen in this next figure. In this the MOSFET is not acting as a switch, but it is instead used as a buffer to isolate the microcontroller from the relay. The MOSFET protects the G2553's pin from the relay as it may draw too much current and burn out the pin. The diode in the schematic is there to protect the MOSFET from reverse voltage caused by the emf produced by inductor in the relay. 
+The schematic for the relay switch circuit can be seen in this next figure. In this the MOSFET is not acting as a switch, but it is instead used as a buffer to isolate the microcontroller from the relay. The MOSFET protects the G2553's pin from the relay as it may draw too much current and burn out the pin. The diode in the schematic is there to protect the MOSFET from reverse voltage caused by the emf produced by inductor in the relay.
 ![RelaySwitchSchematic](RelaySwitchSchematic.png) 
-
-*Insert Screenshot when available*
+The MAD-S-112-C relay which is an automotive relay was used due to its availability. 
+A picture of the physical circuit can be seen next. 
+![Circuit](Circuit.png) 
+The relay can be seen on the oscilloscope with a 2 Hz square wave going into it below. 
+![Relay2Hz](2hzrelay9.png) 
+The relay switch is only capable of switching at approximately 46 Hz, any higher and the relay will stop making full contact with the LED. This can be seen in the following figure. 
+![Relay46Hz](46hzrelay5.png) 
 
 # References
 http://www.electronics-tutorials.ws/transistor/tran_7.html
