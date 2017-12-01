@@ -1,4 +1,5 @@
 Open Loop System Readme
+
 Author: Ben Jukus
 
 # Circuit
@@ -17,9 +18,12 @@ The board chosen was based on the number of timers it had. The MSP430FR5994 was 
 In order to control the fan the MSP430 needed to output a PWM but the fan could not be powered by the fan as it would need too much current to function and would blow out the output pin it was connected to. A MOSFET switch was used to isolate the fan from the MSP430. By powering the fan with 12 V and connecting its ground terminal to the drain of the switch. The gate of the switch was connected to the output PWM pin and the source was connected to ground; in this configuration the fan has power going to it at all times, but the potential across it is controlled by the PWM which flips the switch.  
 
 # BOM
-5V Regulator 		LM317T
+5V Regulator 		LM317T 
+
 Temperature Sensor	LM35
+
 MOSFET(NMOS)		2N7000
+
 Fan (12V, 0.75 A)
 
 # References
