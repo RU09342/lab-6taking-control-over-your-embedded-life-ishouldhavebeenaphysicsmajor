@@ -1,0 +1,25 @@
+Authors: Ryan Drexel, Ben Jukus
+
+#include <msp430.h> 
+
+int i = 0;
+
+int main(void)
+{
+      WDTCTL = WDTPW | WDTHOLD;   //hold wdt
+
+	P3SEL |= BIT0 + BIT1 + BIT2 + BIT3 + BIT4 + BIT5 + BIT6 + BIT7;
+	P3DIR |= BIT0 + BIT1 + BIT2 + BIT3 + BIT4 + BIT5 + BIT6 + BIT7;
+
+    while(1)			//infinite loop
+    {
+        for (i = 0; i < 255; i ++)
+        {
+            P3OUT = i;
+        }
+        for (i = 255; i > 0 ; i --)
+        {
+            P3OUT = i;
+        }
+    }
+}

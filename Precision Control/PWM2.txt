@@ -1,0 +1,52 @@
+//Authors: Ben Jukus, Ryan Drexel
+//PWM part II
+
+#include <msp430.h>
+
+#define RXD BIT4            //define some things to make life easier
+#define TXD BIT3            
+#define PWM BIT2            
+
+int i = 0;
+
+int main(void)
+{
+  WDTCTL = WDTPW + WDTHOLD;                 //hold wdt
+
+  	P1DIR |= PWM;          			        // P1.2 output
+  	P1SEL |= PWM;                      		// P1.2 options select
+
+ 	TA0CCR0 = 256-1;                    		// PWM Period
+  	TA0CCTL1 = OUTMOD_3;                      	// CCR1 set/reset
+ 	TA0CCR1 = 0;                              	// CCR1 PWM duty cycle
+  	TA0CTL = TASSEL_2 + MC_1 + ID_3;          	// SMCLK, UPMODE, DIV 8
+
+	P3SEL = TXD+RXD;                        	// P3.3 = TXD P3.4 =RXD
+   	UCA0CTL1 |= UCSWRST;                    	// state machine reset
+  	UCA0CTL1 |= UCSSEL_2;                   	// sub main clk
+  	UCA0BR0 = 6;                            	// 1MHz 9600
+ 	UCA0BR1 = 0;                            	// 1MHz 9600
+   	UCA0MCTL = UCBRS_0 + UCBRF_13 + UCOS16; 	// Modln UCBRSx=0, UCBRFx=0,
+   	UCA0CTL1 &= ~UCSWRST;                    	// USCI init
+   	UCA0IE |= UCRXIE;                         	// Enable USCI_A0 RX interrupt
+
+  while(1){
+      for (i = 0; i < 255; i ++)
+      {
+          TA0CCR1= i;
+      }
+      for (i = 255; i > 0 ; i --)
+      {
+          TA0CCR1 = i;
+      }
+  }
+}
+}
+
+#pragma vector=USCI_A0_VECTOR
+__interrupt void USCI_A0_ISR(void)
+{
+    while(!(UCA0IFG & UCTXIFG));        // poll if tx buf is ready
+    UCA0TXBUF = UCA0RXBUF;              // tx gets rx
+    TA0CCR1 = (UCA0RXBUF);              // set pwm, CCR1 = rx
+}
