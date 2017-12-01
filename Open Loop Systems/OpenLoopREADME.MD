@@ -1,4 +1,5 @@
 Open Loop System Readme
+
 Author: Ben Jukus
 
 # Circuit
@@ -18,8 +19,11 @@ In order to control the fan the MSP430 needed to output a PWM but the fan could 
 
 # BOM
 5V Regulator 		LM317T
+
 Temperature Sensor	LM35
+
 MOSFET(NMOS)		2N7000
+
 Fan (12V, 0.75 A)
 
 # References
