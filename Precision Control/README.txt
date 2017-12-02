@@ -11,7 +11,9 @@ Intro to Embedded Systems: Lab 6- Precision Control
 =============
 ## Hardware
 In order to PWM an active Low Pass Filter with cutoff frequency of approximately 7.2 kHz, this circuit with a transient analysis can be seen below. 
+
 ![TransientLowPass](TransientLowPass.PNG) 
+
 The point of making this low pass filter is basically to see that the PWM is just like an other signal generator. This circuit simply proves its ability to perform as such. 
 ## Software
 The code for this portion of the lab was taken from previous labs, PWM from Lab 4 and UART from Milestone 1. These concepts were merged together so that the PWM of the fan can be manipulated over UART, which was done simply by making TA0CCR1 equal to UCA0RXBUF in the UART interrupt. 
