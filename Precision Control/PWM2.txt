@@ -16,10 +16,10 @@ int main(void)
   	P1DIR |= PWM;          			        // P1.2 output
   	P1SEL |= PWM;                      		// P1.2 options select
 
- 	TA0CCR0 = 256-1;                    		// PWM Period
+ 	TA0CCR0 = 128-1;                    		// PWM Period
   	TA0CCTL1 = OUTMOD_3;                      	// CCR1 set/reset
  	TA0CCR1 = 0;                              	// CCR1 PWM duty cycle
-  	TA0CTL = TASSEL_2 + MC_1 + ID_3;          	// SMCLK, UPMODE, DIV 8
+  	TA0CTL = TASSEL_2 + MC_1;	          	// SMCLK, UPMODE, DIV 8
 
 	P3SEL = TXD+RXD;                        	// P3.3 = TXD P3.4 =RXD
    	UCA0CTL1 |= UCSWRST;                    	// state machine reset
@@ -31,11 +31,11 @@ int main(void)
    	UCA0IE |= UCRXIE;                         	// Enable USCI_A0 RX interrupt
 
   while(1){
-      for (i = 0; i < 255; i ++)
+      for (i = 0; i < 127; i ++)
       {
           TA0CCR1= i;
       }
-      for (i = 255; i > 0 ; i --)
+      for (i = 127; i > 0 ; i --)
       {
           TA0CCR1 = i;
       }
